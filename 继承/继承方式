@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+
+// 基类
+class Base
+{
+public:
+    int publicVar = 1;
+
+protected:
+    int protectedVar = 2;
+
+private:
+    int privateVar = 3;
+
+public:
+    void display()
+    {
+        cout << "Base: publicVar = " << publicVar << endl;
+        cout << "Base: protectedVar = " << protectedVar << endl;
+        cout << "Base: privateVar = " << privateVar << endl;
+    }
+};
+
+// 公有继承
+class PublicDerived : public Base
+{
+public:
+    void accessBaseMembers()
+    {
+        cout << "PublicDerived: publicVar = " << publicVar << endl;    // 可以访问
+        cout << "PublicDerived: protectedVar = " << protectedVar << endl; // 可以访问
+        // cout << "PublicDerived: privateVar = " << privateVar << endl; // 错误：不能访问
+    }
+};
+
+// 保护继承
+class ProtectedDerived : protected Base
+{
+public:
+    void accessBaseMembers()
+    {
+        cout << "ProtectedDerived: publicVar = " << publicVar << endl;    // 可以访问
+        cout << "ProtectedDerived: protectedVar = " << protectedVar << endl; // 可以访问
+        // cout << "ProtectedDerived: privateVar = " << privateVar << endl; // 错误：不能访问
+    }
+};
+
+// 私有继承
+class PrivateDerived : private Base
+{
+public:
+    void accessBaseMembers()
+    {
+        cout << "PrivateDerived: publicVar = " << publicVar << endl;    // 可以访问
+        cout << "PrivateDerived: protectedVar = " << protectedVar << endl; // 可以访问
+        // cout << "PrivateDerived: privateVar = " << privateVar << endl; // 错误：不能访问
+    }
+};
+
+int main()
+{
+    // 公有继承
+    PublicDerived pubDerived;
+    cout << "PublicDerived: publicVar = " << pubDerived.publicVar << endl; // 可以访问
+    // cout << "PublicDerived: protectedVar = " << pubDerived.protectedVar << endl; // 错误：不能访问
+    // cout << "PublicDerived: privateVar = " << pubDerived.privateVar << endl; // 错误：不能访问
+    pubDerived.accessBaseMembers();
+    pubDerived.display();
+
+    // 保护继承
+    ProtectedDerived protDerived;
+    // cout << "ProtectedDerived: publicVar = " << protDerived.publicVar << endl; // 错误：不能访问
+    // cout << "ProtectedDerived: protectedVar = " << protDerived.protectedVar << endl; // 错误：不能访问
+    // cout << "ProtectedDerived: privateVar = " << protDerived.privateVar << endl; // 错误：不能访问
+    protDerived.accessBaseMembers();
+    // protDerived.display(); // 错误：不能访问
+
+    // 私有继承
+    PrivateDerived privDerived;
+    // cout << "PrivateDerived: publicVar = " << privDerived.publicVar << endl; // 错误：不能访问
+    // cout << "PrivateDerived: protectedVar = " << privDerived.protectedVar << endl; // 错误：不能访问
+    // cout << "PrivateDerived: privateVar = " << privDerived.privateVar << endl; // 错误：不能访问
+    privDerived.accessBaseMembers();
+    // privDerived.display(); // 错误：不能访问
+
+    return 0;
+}
