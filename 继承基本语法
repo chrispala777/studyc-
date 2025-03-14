@@ -1,0 +1,62 @@
+
+//语法：class 子类（派生类） ：public 父类（基类）{}
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 基类：Animal
+class Animal
+{
+public:
+    string name;
+
+    // 构造函数
+    Animal(string name) : name(name) {}
+
+    // 成员函数：发出声音
+    void makeSound()
+    {
+        cout << name << " makes a sound." << endl;
+    }
+};
+
+// 派生类：Dog，继承自 Animal
+class Dog : public Animal
+{
+public:
+    string breed;
+
+    // 构造函数
+    Dog(string name, string breed) : Animal(name), breed(breed) {}
+
+    // 重写基类的成员函数
+    void makeSound()
+    {
+        cout << name << " (a " << breed << " dog) barks: Woof! Woof!" << endl;
+    }
+
+    // 派生类独有的方法
+    void fetch()
+    {
+        cout << name << " is fetching the ball!" << endl;
+    }
+};
+
+int main()
+{
+    // 创建基类对象
+    Animal animal("Generic Animal");
+    animal.makeSound(); // 输出: Generic Animal makes a sound.
+
+    // 创建派生类对象
+    Dog dog("Buddy", "Golden Retriever");
+    dog.makeSound(); // 输出: Buddy (a Golden Retriever dog) barks: Woof! Woof!
+    dog.fetch();     // 输出: Buddy is fetching the ball!
+
+    // 使用基类指针指向派生类对象
+    Animal* animalPtr = &dog;
+    animalPtr->makeSound(); // 输出: Buddy makes a sound. （没有调用派生类的重写方法）
+
+    return 0;
+}
