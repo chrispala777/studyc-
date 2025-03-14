@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+#include <string>
+
+class person
+{
+public:
+	person(int age)
+	{
+		m_age = new int(age);
+	}
+	
+ 
+	person& operator=(person &p)
+	{
+		if (m_age != NULL)
+		{
+			delete m_age;                        //判断堆区是否有属性 有则先删掉
+			m_age = NULL;
+		}
+		m_age = new int(*p.m_age);                //深拷贝
+		return *this;							// 返回本身 可以完成链式  即p1=p2=p3 ，返回类型要引用
+	}
+
+	~person()                                   // 小心浅拷贝，堆区的数据需要手动释放，且满足后运行先释放，如果没有上述重载运算符则会释放两次堆区 程序崩溃 
+	{
+		if (m_age != NULL)
+		{
+			delete m_age;
+			m_age = NULL;
+		}
+	}
+	int* m_age;
+};
+ostream& operator<<(ostream& cout, person& p)
+{
+	cout << *p.m_age;
+	return cout;
+}
+void test01()
+{
+	person p1(19);
+	person p2(90);
+	person p3(20);
+	p3=p2 = p1;
+	cout << p2 << endl;
+}
+int main()
+{
+	test01();
+	 
+}
