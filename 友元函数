@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+#include <string>
+
+class Building
+{
+	friend void  goodgay(Building* building); //友元函数，可以访问私有权限信息
+public:
+	Building()
+	{
+		m_sittingroom = "客厅";
+		m_bedroom = "卧室";
+	}
+
+public:
+	string m_sittingroom;
+private:
+	string m_bedroom;
+
+};
+void  goodgay(Building *building)
+{
+	cout << "好基友全局函数正在访问：" << building->m_sittingroom << endl;
+	cout << "好基友全局函数正在访问：" << building->m_bedroom << endl;
+}//全局函数
+
+int main() {
+	Building building;
+	goodgay(&building);
+	return 0;
+}
