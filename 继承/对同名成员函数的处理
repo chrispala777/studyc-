@@ -1,0 +1,47 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Base
+{
+public:
+    int m_a = 100;
+    void func()
+    {
+        cout << "Base成员函数已激活" << endl;
+    }
+    void func(int a)                                //重载
+    {
+        cout << "Base成员函数已激活10" << endl;
+    }
+};
+class son : public Base
+{
+public:
+    int m_a = 200;
+    void func()
+    {
+        cout << "son成员函数已激活" << endl;
+    }
+
+   
+};
+/*void test01()
+{
+    son s;
+    cout << "son的m_a是：" << s.m_a << endl;
+    cout << "Base的m_a是：" << s.Base::m_a << endl;   //添加了作用域可以访问到父类的数据
+}*/
+void test02()
+{
+    son s1;
+    s1.func();
+    s1.Base::func(10);                                   ////添加了作用域可以用父类中的同名重载成员函数 ，否则的话子类会隐藏父类中的所有同名函数
+}
+int main()
+{
+   
+    test02();
+    return 0;
+}
