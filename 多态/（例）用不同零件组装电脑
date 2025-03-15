@@ -1,0 +1,124 @@
+#include <iostream>
+using namespace std;
+
+
+class CPU
+{
+public:
+    virtual void calc() = 0;
+};
+
+class Gracard
+{
+public:
+    virtual void display() = 0;
+};
+
+class Memory
+{
+public:
+    virtual void memory() = 0;
+};
+
+
+class Intercpu :public CPU
+{
+    void calc()
+    {
+        cout << "inter的cpu开始计算了！" << endl;
+    }
+
+};
+class InterGracard :public Gracard
+{
+    void display()
+    {
+        cout << "inter的Gracard开始显示了！" << endl;
+    }
+
+};
+class Intermemory :public Memory
+{
+    void memory()
+    {
+        cout << "inter的内存开始工作了！" << endl;
+    }
+
+};
+
+class Lenovocpu :public CPU
+{
+    void calc()
+    {
+        cout << "lenovo的cpu开始计算了！" << endl;
+    }
+
+};
+class LenovoGracard :public Gracard
+{
+    void display()
+    {
+        cout<<"Lenovo的Gracard开始显示了！" << endl;
+    }
+
+};
+class  Lenovomemory :public Memory
+{
+    void memory()
+    {
+        cout << " Lenovo的内存开始工作了！" << endl;
+    }
+
+};
+
+class Computer
+{
+public:
+    Computer(CPU*cpu, Gracard* gc, Memory* mem)
+    {
+        m_cpu = cpu;
+        m_gc = gc;
+        m_mem = mem;
+    }
+
+public:
+    CPU* m_cpu;
+    Gracard* m_gc;
+    Memory*m_mem;
+    void dowork()
+    {
+        m_cpu->calc();
+        m_gc->display();
+        m_mem->memory();
+    }
+    ~Computer()
+    {
+        delete m_cpu;  // 释放 CPU 对象
+        delete m_gc;   // 释放显卡对象
+        delete m_mem; // 释放内存对象
+    }
+};
+
+void test01()          //组装第一台电脑
+{
+    CPU* cpu = new Intercpu;
+    Gracard* gc = new InterGracard;
+    Memory* mem = new Lenovomemory;
+    Computer com1(cpu, gc, mem);
+    com1.dowork();
+}    
+
+void test02()          //组装第二台电脑
+{
+    CPU* cpu = new Lenovocpu;
+    Gracard* gc = new InterGracard;
+    Memory* mem = new Lenovomemory;
+    Computer com1(cpu, gc, mem);
+    com1.dowork();
+}
+int main()
+{
+    test01();
+    test02();
+    return 0;
+}
