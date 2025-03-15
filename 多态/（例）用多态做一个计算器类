@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+#include <string>
+
+
+
+class Calculator
+{
+public:
+    virtual int getresult()
+    {
+        return 0;
+       
+    }
+public:
+    int m_num1;
+    int m_num2;
+};
+
+class AddCalculator:public Calculator
+{
+public:
+    virtual int getresult()
+    {
+        return m_num1 + m_num2;   
+    }
+
+};
+class subCalculator :public Calculator
+{
+public:
+    virtual int getresult()
+    {
+        return m_num1 - m_num2;
+    }
+
+};
+class mulCalculator :public Calculator
+{
+public:
+    virtual int getresult()
+    {
+        return m_num1 * m_num2;
+    }
+
+};
+void test01(Calculator &abc,int a,int b,string oper)
+{
+    abc.m_num1 = a ;
+    abc.m_num2 = b ;
+    abc.getresult();                                                                //通过基类引用调用派生类中重写的虚函数。
+    cout << abc.m_num1 << oper << abc.m_num2 << "=" << abc.getresult() << endl;
+}
+
+void test03(int a,int b,string oper)
+{
+    Calculator* abc = new mulCalculator;
+    abc->m_num1 = a;                                                                      //通过基类指针操作派生类对象,需要手动删除内存
+    abc->m_num2 = b;
+    cout << abc->m_num1<< oper << abc->m_num2<< "=" << abc->getresult() << endl;
+    delete abc;
+}
+int main()
+{
+    AddCalculator addcalc;
+    subCalculator subcalc;
+
+    test01(addcalc,100,100,"+");                                //多态的好处就是用谁就调用谁
+    test01(subcalc, 100, 100, "-");
+    test03(100, 100, "*");
+    system("pause");
+    return 0;
+}
