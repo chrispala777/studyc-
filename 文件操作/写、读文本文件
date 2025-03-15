@@ -1,0 +1,43 @@
+文本文件：文件以文本的ASCII码存储在在计算机内
+二进制文件：文件以文本的二进制形式存储在计算机内
+
+对文件操作需要添加头文件<fstream>
+
+打开方式
+ios：：in    读文件
+ios：：out    写文件
+ios：：ate    文件尾
+ios：：app     追加写文件
+ios：：trunc    删除原有文件创建新的
+ios：：binary   二进制
+
+可以配合使用如：ios：：in | ios：：out
+
+
+写文件：
+1.包含头文件<fstream>
+2.创建对象流
+ ofstream ofs；
+3.指定打开方式
+ofs.open(路径，打开方式ios：：out);
+4.写内容
+ofs<<",,,,,,"<<endl;
+5关闭文件
+ofs.close();
+
+读文件：
+1.包含头文件<fstream>
+2.创建对象流
+ ifstream ifs；
+3.指定打开方式
+ifs.open(路径，打开方式ios：：out);
+4.读内容
+  四种方式读取：
+
+string buf；
+while(gstline(ifs,buf))
+{
+cout<<buf<<endl;
+}
+5关闭文件
+ifs.close();
