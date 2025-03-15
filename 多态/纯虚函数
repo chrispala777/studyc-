@@ -1,0 +1,13 @@
+//我们发现基类中的函数一般都没用到，我们可以将它抽象为纯虚函数：
+class Calculator
+{
+public:
+    virtual int getresult(）=0
+public:
+    int m_num1;
+    int m_num2;
+};
+
+/*注意：
+1.类中有一个抽象函数称为抽象类
+2.子类必须重写父类中的纯虚函数，否则也属于抽象类*/
