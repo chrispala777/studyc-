@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 基类 Drinker
+class Drinker
+{
+public:
+    virtual void work() = 0; // 纯虚函数
+    string m_name; // 饮品名称
+};
+
+// 派生类 Coffee
+class Coffee : public Drinker
+{
+public:
+    Coffee()
+    {
+        m_name = "coffee"; // 初始化饮品名称
+    }
+
+    virtual void work()
+    {
+        cout << "做" << m_name << "的步骤是：" << endl;
+        cout << "第一步煮水" << endl;
+        cout << "第二步冲泡" << m_name << endl;
+        cout << "第三步倒入杯中" << endl;
+        cout << "第四步加入糖" << endl;
+    }
+};
+
+// 派生类 Tea
+class Tea : public Drinker
+{
+public:
+    Tea()
+    {
+        m_name = "tea"; // 初始化饮品名称
+    }
+
+    virtual void work()
+    {
+        cout << "做" << m_name << "的步骤是：" << endl;
+        cout << "第一步煮水" << endl;
+        cout << "第二步冲泡" << m_name << endl;
+        cout << "第三步倒入杯中" << endl;
+        cout << "第四步加入lemon" << endl;
+    }
+};
+
+// 通过基类引用调用派生类的 work() 方法
+void dowork(Drinker& abc)
+{
+    abc.work();
+}
+
+int main()
+{
+    Coffee coffee;
+    Tea tea;
+
+    dowork(coffee); // 制作咖啡
+    cout << "-----------------" << endl;
+    dowork(tea);    // 制作茶
+
+    return 0;
+}
