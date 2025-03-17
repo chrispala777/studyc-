@@ -1,0 +1,26 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+template<typename T>   //关键字 注意<>里没有逗号
+void swapnum(T &a,T& b)
+{
+    T temp = a;
+    a = b;
+    b = temp;
+}
+int main()
+{
+   //方法一 自动推理
+    int a = 10;
+    int b = 20;
+    /*swapnum(a, b);*/
+
+
+    //方法二告诉编译器
+    swapnum<int>(a, b);
+    cout << "a="<<a << "\t" <<
+        "b="<<b << endl;
+    return 0;
+    system("pause");
+}
