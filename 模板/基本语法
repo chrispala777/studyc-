@@ -24,3 +24,9 @@ int main()
     return 0;
     system("pause");
 }
+
+
+
+注意：1.自动推导必须参数类型一致
+2.必须确定T的参数类型
+3.template<typename T> 下面紧接着的就是函数模板
