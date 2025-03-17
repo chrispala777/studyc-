@@ -1,0 +1,61 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+template<typename T>           //单纯模板，编译器不能够比较自定义类型
+bool compareis(T &a, T &b)
+{
+    if (a == b)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+class person
+{
+public:
+    string m_name;
+    int m_age;
+    person(string name,int age)
+    {
+        this->m_age = age;
+        this->m_name = name;
+    }
+
+};
+template<> bool compareis(person& a, person& b)      //具体化以及加上空模板参数调用函数模板
+{
+    if (a.m_age == b.m_age&&a.m_name==b.m_name)
+    {
+            return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+
+
+
+int main()
+{
+    person p1("lishuai", 18);
+    person p2("lishuai", 18);
+   bool ret= compareis(p1, p2);
+   if (ret)
+   {
+       cout << "相等！" << endl;
+   }
+   else
+   {
+       cout << "不等！" << endl;
+   }
+    return 0;
+    system("pause");
+}
