@@ -1,0 +1,18 @@
+void Managementsystem::addpeople()
+{
+	int select1 = 0;
+	cout << "请输入你要添加的人数：" << endl;
+	cin >> select1;
+
+	//判断输入有无效
+	while (cin.fail() || select1 <= 0)
+	{
+		cin.clear();  // 清除错误状态
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');  // 清除输入缓冲区
+		cout << "输入有误，请输入一个正整数：" << endl;
+		cin >> select1;
+	}
+}
+
+
+记得包含    #include <limits>    // 用于清除输入缓冲区
