@@ -41,3 +41,18 @@ cout<<buf<<endl;
 }
 5关闭文件
 ifs.close();
+
+
+
+
+
+删除文件：
+1.包含头文件<fstream>
+2.创建对象流
+ ofstream ofs；
+3.指定打开方式
+ofs.open(路径，打开方式ios：：trunk);
+4.写内容
+ofs<<",,,,,,"<<endl;
+5关闭文件
+ofs.close();
