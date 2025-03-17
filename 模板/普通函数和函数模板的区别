@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+//给两个数组排序
+
+template<typename T>
+T swapnum(T a, T b)
+{
+    return a + b;
+}
+
+//int addnum(int a,int b)
+//{
+//    return a + b;
+// }
+
+
+int main()
+{
+    int a = 10;
+    char c = 'c';
+  /*  cout << addnum(a, c); */    //普通函数可以隐式类型转换 'c'AIIs码为99，即转化成了int型
+
+ /*   cout << swapnum(a, c); */    //函数模板第一种方式自动推理 不能完成隐式类型转换
+
+
+    cout << swapnum<int>(a, c); //函数模板第er种方式能完成隐式类型转换
+    return 0;
+    system("pause");
+}
