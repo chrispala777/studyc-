@@ -1,0 +1,55 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+template<class Typename ,class Typeage>           
+class person
+{
+public:
+    Typename  m_name;
+    Typeage   m_age;
+    person(Typename name, Typeage  age)
+    {
+        this->m_age = age;
+        this->m_name = name;
+    }
+    void showperson()
+    {
+        cout << "该成员名字是：" << m_name << endl;
+        cout << "该成员年龄是：" << m_age << endl;
+    }
+};
+//类模板对象做函数参数 方法一：指定传入法（最常用）
+void printperson(person<string, int>& p)   //指定了p的类型 用引用的方式传入
+{
+    p.showperson();
+}
+
+//类模板对象做函数参数 方法2：参数模板化
+template<class T1,  class T2>
+void printperson1(person<T1, T2>& p)  
+{
+    p.showperson();
+}
+//类模板对象做函数参数 方法3：类模板化
+template<class T>
+void printperson3(T& p)
+{
+    p.showperson();
+}
+
+
+
+int main()
+{
+    person<string, int> p("张三",18);  //这里得要声明类型
+    printperson(p); 
+    printperson1(p);
+    printperson3(p);
+
+    return 0;
+    system("pause");
+}
+
