@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+template<class T1 ,class T2>           
+class person
+{
+public:
+   T1  m_name;
+   T2  m_age;
+    person(T1 name, T2 age);
+    void showperson();
+    
+};
+template<class T1, class T2>
+person<T1, T2>::person(T1 name, T2 age)
+{
+    this->m_age = age;
+    this->m_name = name;
+}
+template<class T1, class T2>
+void person<T1, T2>::showperson()                           //成员函数类外实现
+{
+    cout << "名字是：" << this->m_name << endl;
+    cout << "年龄是：" << this->m_age << endl;
+
+}
+
+
+
+int main()
+{
+    person<string,int> p("张三", 18);
+    p.showperson();
+    return 0;
+    system("pause");
+}
+
